@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CrazyForGames.com</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('file:///C:/Users/pinak/Downloads/DALL%C2%B7E%202025-03-21%2019.16.00%20-%20A%20high-quality,%20gaming-themed%20background%20for%20a%20signup%20page%20without%20any%20windows,%20signup%20boxes,%20or%20tech-style%20elements.%20The%20design%20should%20focus%20on%20a%20pur.webp') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            display: block;
+            width: calc(100% - 20px);
+            margin: 10px auto;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .password-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #fff;
+        }
+        .btn {
+            padding: 10px 20px;
+            background: #ff4500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background: #e03e00;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username" required>
+        <div class="password-container">
+            <input type="password" id="password" placeholder="Password" required>
+            <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+        </div>
+        <button class="btn" onclick="login()">Login</button>
+        <p id="message"></p>
+    </div>
+    <script type="module">
+        import { specialUsername, specialPassword } from './specialEmail.js';
+
+        function togglePassword(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const type = passwordInput.type === 'password' ? 'text' : 'password';
+            passwordInput.type = type;
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Retrieve user data
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.username === username && user.password === password);
+
+            if (username === specialUsername && password === specialPassword) {
+                document.getElementById('message').textContent = 'Welcome, special user "The OG"! Redirecting...';
+                setTimeout(() => {
+                    window.location.href = 'games.html';
+                }, 2000);
+            } else if (user) {
+                document.getElementById('message').textContent = 'Login successful! Redirecting...';
+                setTimeout(() => {
+                    window.location.href = 'games.html';
+                }, 2000);
+            } else {
+                document.getElementById('message').textContent = 'Username or password is incorrect!';
+            }
+        }
+    </script>
+</body>
+</html>
