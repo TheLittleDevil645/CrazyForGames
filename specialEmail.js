@@ -1,7 +1,7 @@
-// Define the special email, username, and password
-const specialEmail = "themakeofthisgameisdumb@gmail.com";
-const specialUsername = "The OG";
-const specialPassword = "shivamkanzaria";
+// Define placeholders for sensitive information
+const specialEmail = process.env.SPECIAL_EMAIL || "placeholder@example.com";
+const specialUsername = process.env.SPECIAL_USERNAME || "placeholderUsername";
+const specialPassword = process.env.SPECIAL_PASSWORD || "placeholderPassword";
 
-// Export the special email, username, and password so they can be used in other files
+// Export the placeholders
 export { specialEmail, specialUsername, specialPassword };
